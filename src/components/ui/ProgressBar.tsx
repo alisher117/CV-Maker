@@ -1,5 +1,9 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 export interface ProgressBarProps {
-    value: number;
+  value: number;
   max: number;
   label?: string;
 }
@@ -19,7 +23,12 @@ export default function ProgressBar({ value, max, label = 'Progress' }: Progress
       aria-valuetext={`${safeValue} of ${safeMax}`}
       className="h-1.5 w-full overflow-hidden rounded-full bg-gray-200"
     >
-      <div className="h-full rounded-full bg-red-700" style={{ width: `${percent}%` }} />
+      <motion.div
+        className="h-full origin-left rounded-full bg-red-700"
+        initial={false}
+        animate={{ width: `${percent}%` }}
+        transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+      />
     </div>
   );
 }

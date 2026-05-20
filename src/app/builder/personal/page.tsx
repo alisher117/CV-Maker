@@ -7,12 +7,12 @@ export default function PersonalInfoPage() {
       <Header />
 
       <div className="flex flex-1 items-start gap-6 border border-[#D9D9D9]">
-        <aside className="shrink-0 border border-[#D9D9D9]">
+        <aside className="shrink-0 self-stretch border border-[#D9D9D9]">
           <ProgressSidebar />
         </aside>
 
         <main className="flex-1 border border-[#D9D9D9] px-6 py-8">
-          <h1 className="text-2xl font-semibold">Personal info</h1>
+          <h1 className="text-2xl font-semibold">Personal Info</h1>
           <p className="mt-1 text-sm text-gray-500">
             TODO: implement per docs/briefs/feat-personal-info.md
           </p>
