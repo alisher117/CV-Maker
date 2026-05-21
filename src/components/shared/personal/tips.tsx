@@ -20,9 +20,9 @@ export default function Tips() {
   //const randomTip = tips[Math.floor(Math.random() * tips.length)]
 
   return (
-    <section className="tip-bg">
+    <section className="tip">
       <p className="font-semibold">💡 Tip:</p>
-      <p>ikugtli7r8</p>
+      <p>Use action verbs and numbers. Recruiters scan a CV in under 10 seconds.</p>
     </section>
   )
 }

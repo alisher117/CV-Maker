@@ -7,15 +7,16 @@ import DateOfBirth from "./date_of_birth"
 import Location from "./location"
 import About from "./about"
 
+
 export default function PersonalInfo(){
     return (
         <>
-        <div>
+        <section className="personal-info">
             <h2>Personal information</h2>
             <p>This gets at the top of your CV. Email and phone are how recruiters reach you.</p>
-        </div>
-        <form>
-            <FirstName/>
+        </section>
+        <form className="personal-form">
+            <FirstName />
             <LastName/>
             <Email/>
             <Phone/>
