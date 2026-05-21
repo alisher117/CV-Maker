@@ -43,10 +43,13 @@ body {
   font-family: 'Montserrat';
 }
 
-.tip-bg{
+.tip{
   background-color: #FBF7EB;
   border-radius: 15px;
   padding: 12px 16px;
+  font-size: 14px;
+  margin: 2%;
+  width: fit-content;
 }
 
 .next-btn{
@@ -88,12 +91,34 @@ label{
 
 input{
   border: 1px solid #D9D9D9;
-  border-radius: 8px;
+  border-radius: 12px;
   height: 48px;
-  width: 235px;
+  width: 350px;
   padding: 8px;
 }
 
-input:focus{
-  border: 1px solid #1F8A5C;
+textarea{
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  padding: 12px;
+  width: 450px;
+}
+
+.personal-info, .review-download{
+  margin: 40px 30px;
+}
+
+.personal-info h2, .review-download h2{
+  font-size: 27px;
+  font-weight: bold;
+  letter-spacing: 1%;
+}
+
+.personal-info p, .review-download p{
+  font-size: 14px;
+  letter-spacing: -3%;
+}
+
+.personal-form{
+  margin: 2%;
 }
