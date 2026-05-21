@@ -38,7 +38,7 @@ export default function DateOfBirth() {
         title="Use format DD.MM.YYYY "
         max="31.12.2020"//user can't be born in future or be child. for further functionality must be updated
       />
-      
+
     </>
   );
 }
