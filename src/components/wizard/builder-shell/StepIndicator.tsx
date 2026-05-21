@@ -1,3 +1,7 @@
+'use client';
+
+import { AnimatePresence, motion, type Variants } from 'framer-motion';
+
 import CheckIcon from '@/components/ui/CheckIcon';
 
 export interface StepIndicatorProps {
@@ -6,7 +10,11 @@ export interface StepIndicatorProps {
   completed?: boolean;
   current?: boolean;
   optional?: boolean;
+  variants?: Variants;
 }
+
+const badgeTransition = { duration: 0.35, ease: [0.4, 0, 0.2, 1] as const };
+const labelTransition = { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const };
 
 export default function StepIndicator({
   index,
@@ -14,32 +22,87 @@ export default function StepIndicator({
   completed = false,
   current = false,
   optional = false,
+  variants,
 }: StepIndicatorProps) {
-  const badgeClasses = current
-    ? 'bg-red-700 text-white border-red-700'
-    : completed
-      ? 'bg-white text-red-700 border-red-300'
-      : 'bg-white text-gray-400 border-gray-300';
-
-  const labelClasses = current
-    ? 'text-red-700 font-semibold'
-    : completed
-      ? 'text-rose-400 font-medium'
-      : 'text-gray-500';
+  const isActive = current;
+  const isDone = completed && !current;
 
   return (
-    <li aria-current={current ? 'step' : undefined} className="flex items-start gap-3">
-      <span
+    <motion.li
+      layout
+      variants={variants}
+      aria-current={current ? 'step' : undefined}
+      className="flex min-h-9 items-center gap-3"
+      initial={variants ? 'hidden' : false}
+      animate={variants ? 'show' : { opacity: 1 }}
+      transition={{ layout: { duration: 0.25, ease: [0.4, 0, 0.2, 1] } }}
+    >
+      <motion.span
+        layout
         aria-hidden="true"
-        className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${badgeClasses}`}
+        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 text-xs font-semibold"
+        initial={false}
+        animate={{
+          backgroundColor: isActive ? '#A6192E' : isDone ? '#ffffff' : '#ffffff',
+          borderColor: isActive ? '#A6192E' : isDone ? '#FECACA' : '#D1D5DB',
+          color: isActive ? '#ffffff' : isDone ? '#A6192E' : '#9CA3AF',
+          scale: isActive ? 1.05 : 1,
+        }}
+        transition={badgeTransition}
       >
-        {completed ? <CheckIcon className="h-3.5 w-3.5" /> : index}
-      </span>
+        <AnimatePresence mode="wait" initial={false}>
+          {completed ? (
+            <motion.span
+              key="check"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              className="flex items-center justify-center"
+            >
+              <CheckIcon className="h-3.5 w-3.5" />
+            </motion.span>
+          ) : (
+            <motion.span
+              key="index"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+            >
+              {index}
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </motion.span>
 
-      <span className="flex flex-col leading-tight">
-        <span className={`text-sm ${labelClasses}`}>{label}</span>
-        {optional ? <span className="text-[11px] text-gray-400">Optional</span> : null}
-      </span>
-    </li>
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-0.5">
+        <motion.span
+          className="truncate text-sm leading-none"
+          initial={false}
+          animate={{
+            color: isActive ? '#A6192E' : isDone ? '#FB7185' : '#6B7280',
+            fontWeight: isActive ? 600 : isDone ? 500 : 400,
+          }}
+          transition={labelTransition}
+        >
+          {label}
+        </motion.span>
+        <AnimatePresence initial={false}>
+          {optional ? (
+            <motion.span
+              key="optional"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-[11px] leading-none text-gray-400"
+            >
+              Optional
+            </motion.span>
+          ) : null}
+        </AnimatePresence>
+      </div>
+    </motion.li>
   );
 }

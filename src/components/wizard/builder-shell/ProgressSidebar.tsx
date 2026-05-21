@@ -1,6 +1,11 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 import ProgressBar from '@/components/ui/ProgressBar';
 
 import StepIndicator from './StepIndicator';
+import { WIZARD_STEPS } from './steps';
 
 export interface WizardStep {
   id: string;
@@ -10,20 +15,30 @@ export interface WizardStep {
   current?: boolean;
 }
 
-export const DEFAULT_WIZARD_STEPS: WizardStep[] = [
-  { id: 'personal', label: 'Personal info', completed: true, current: true },
-  { id: 'education', label: 'Education', completed: true },
-  { id: 'certifications', label: 'Certifications', optional: true },
-  { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Work experience' },
-  { id: 'review', label: 'Review & download' },
-];
+export const DEFAULT_WIZARD_STEPS = WIZARD_STEPS;
 
 export interface ProgressSidebarProps {
   steps?: WizardStep[];
 }
 
-export default function ProgressSidebar({ steps = DEFAULT_WIZARD_STEPS }: ProgressSidebarProps) {
+const listVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.05 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -8 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const },
+  },
+};
+
+export default function ProgressSidebar({ steps = WIZARD_STEPS }: ProgressSidebarProps) {
   const total = steps.length;
   const completedCount = steps.filter((s) => s.completed).length;
   const currentIndex = steps.findIndex((s) => s.current);
@@ -37,9 +52,15 @@ export default function ProgressSidebar({ steps = DEFAULT_WIZARD_STEPS }: Progre
       <div className="flex flex-col gap-3">
         <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
           Your progress <span aria-hidden="true">·</span>{' '}
-          <span className="text-gray-900">
+          <motion.span
+            key={positionLabel}
+            className="inline-block text-gray-900"
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+          >
             {positionLabel}/{total}
-          </span>
+          </motion.span>
         </p>
         <ProgressBar
           value={positionLabel}
@@ -48,10 +69,18 @@ export default function ProgressSidebar({ steps = DEFAULT_WIZARD_STEPS }: Progre
         />
       </div>
 
-      <ol className="flex flex-col gap-4" role="list">
+      <motion.ol
+        className="flex flex-col gap-4"
+        role="list"
+        aria-label="Wizard steps"
+        variants={listVariants}
+        initial="hidden"
+        animate="show"
+      >
         {steps.map((step, i) => (
           <StepIndicator
             key={step.id}
+            variants={itemVariants}
             index={i + 1}
             label={step.label}
             completed={step.completed}
@@ -59,7 +88,7 @@ export default function ProgressSidebar({ steps = DEFAULT_WIZARD_STEPS }: Progre
             optional={step.optional}
           />
         ))}
-      </ol>
+      </motion.ol>
     </nav>
   );
 }
