@@ -47,10 +47,10 @@ export default function ProgressSidebar({ steps = WIZARD_STEPS }: ProgressSideba
   return (
     <nav
       aria-label="Wizard progress"
-      className="flex w-full max-w-[260px] flex-col gap-6 px-6 py-6"
+      className="flex w-[300px] min-w-[300px] flex-col gap-6 px-7 py-6"
     >
       <div className="flex flex-col gap-3">
-        <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+        <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
           Your progress <span aria-hidden="true">·</span>{' '}
           <motion.span
             key={positionLabel}

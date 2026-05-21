@@ -21,7 +21,7 @@ export default function ProgressBar({ value, max, label = 'Progress' }: Progress
       aria-valuemax={safeMax}
       aria-valuenow={safeValue}
       aria-valuetext={`${safeValue} of ${safeMax}`}
-      className="h-1.5 w-full overflow-hidden rounded-full bg-gray-200"
+      className="h-2 w-full overflow-hidden rounded-full bg-gray-200"
     >
       <motion.div
         className="h-full origin-left rounded-full bg-red-700"
