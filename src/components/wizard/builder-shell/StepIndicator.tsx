@@ -32,7 +32,7 @@ export default function StepIndicator({
       layout
       variants={variants}
       aria-current={current ? 'step' : undefined}
-      className="flex min-h-9 items-center gap-3"
+      className="flex min-h-10 items-center gap-3.5"
       initial={variants ? 'hidden' : false}
       animate={variants ? 'show' : { opacity: 1 }}
       transition={{ layout: { duration: 0.25, ease: [0.4, 0, 0.2, 1] } }}
@@ -40,7 +40,7 @@ export default function StepIndicator({
       <motion.span
         layout
         aria-hidden="true"
-        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 text-xs font-semibold"
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-semibold"
         initial={false}
         animate={{
           backgroundColor: isActive ? '#A6192E' : isDone ? '#ffffff' : '#ffffff',
@@ -78,7 +78,7 @@ export default function StepIndicator({
 
       <div className="flex min-w-0 flex-1 flex-col justify-center gap-0.5">
         <motion.span
-          className="truncate text-sm leading-none"
+          className="truncate text-[15px] leading-snug"
           initial={false}
           animate={{
             color: isActive ? '#A6192E' : isDone ? '#FB7185' : '#6B7280',
