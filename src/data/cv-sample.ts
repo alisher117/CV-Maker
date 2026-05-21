@@ -11,7 +11,7 @@ export const SAMPLE_CV_DATA: CVData = {
   experience: [
     {
       role: 'Senior Engineer',
-      company: 'Acme Corp',
+      company: 'FirCaspian',
       period: '2020 – Present',
       bullets: [
         'Led a team of 5 developers on the customer portal rewrite',
