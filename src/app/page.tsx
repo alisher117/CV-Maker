@@ -6,6 +6,7 @@ import NextBtn from '@/components/sections/personal/next_btn';
 import PersonalInfo from '@/components/sections/personal/personal';
 import SkipBtn from '@/components/sections/personal/skip_btn';
 import Tips from '@/components/sections/personal/tips';
+import Education from '@/components/sections/education/education';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <div className="flex min-h-0 min-w-0 flex-1">
           <main className="builder-form-column min-w-0 flex-[3] overflow-auto border border-[#D9D9D9] px-8 py-8">
             <div className="mt-6">
+              <Education/>
               <PersonalInfo />
             </div>
 

@@ -52,7 +52,7 @@ body {
   max-width: calc(100% - 2.5rem);
 }
 
-.next-btn{
+.next-btn, .save-entry-btn{
   background-color: var(--brand);
   color: white;
   border-radius: 8px;
@@ -69,7 +69,15 @@ body {
   height: 40px;
 }
 
-.back-btn{
+.edit_btn{
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.back-btn, .cancel-btn{
   background-color: white;
   border-radius: 8px;
   border: 1px solid #D9D9D9;
@@ -78,20 +86,21 @@ body {
   font-weight: bold;
 }
 
-.personal-info, .review-download{
+.personal-info, .review-download, .education-info{
   margin: 0 0 1.5rem;
 }
 
-.personal-info h2, .review-download h2{
+.personal-info h2, .review-download h2, .education-info h2{
   font-size: 32px;
   font-weight: bold;
   letter-spacing: 0.01em;
 }
 
-.personal-info p, .review-download p{
+.personal-info p, .review-download p, .education-info p{
   font-size: 15px;
   letter-spacing: -0.03em;
   margin-top: 0.5rem;
+  color: var(--text-sub)
 }
 
 .personal-form{
@@ -133,4 +142,46 @@ body {
 
 .builder-form-column{
   flex: 3 1 0%;
+}
+
+.education-card{
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  margin: 10px 0;
+  padding: 20px; 
+  display: flex; 
+}
+
+.education-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.education-form label {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 0 5px;
+  display: block;
+}
+
+.education-form input {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.education-form input:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.1);
 }
