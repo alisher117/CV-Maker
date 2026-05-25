@@ -1,9 +1,14 @@
-"use client"
+'use client';
 
-export default function SaveEntryBtn() {
-    return (
-        <>
-        <button className="save-entry-btn">Save Entry</button>
-        </>
-    )
+interface SaveEntryBtnProps {
+  onClick: () => void;
+  label?: string;
+}
+
+export default function SaveEntryBtn({ onClick, label = 'Save Entry' }: SaveEntryBtnProps) {
+  return (
+    <button type="button" className="save-entry-btn" onClick={onClick}>
+      {label}
+    </button>
+  );
 }

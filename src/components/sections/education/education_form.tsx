@@ -1,21 +1,34 @@
-"use client"
+'use client';
 
-import Degree from "./degree"
-import EndDate from "./end_date"
-import StartDate from "./start_date"
-import UniversityOrCollege from "./university_college"
+import type { EducationFormValues } from '@/types/education';
 
-export default function EducationForm() {
+import Degree from './degree';
+import EndDate from './end_date';
+import StartDate from './start_date';
+import UniversityOrCollege from './university_college';
+
+interface EducationFormProps {
+  values: EducationFormValues;
+  onChange: (field: keyof EducationFormValues, value: string) => void;
+}
+
+export default function EducationForm({ values, onChange }: EducationFormProps) {
   return (
-    <form className="education-form">
+    <form className="education-form" onSubmit={(e) => e.preventDefault()}>
       <div className="form-row">
-        <UniversityOrCollege />
-        <Degree />
+        <UniversityOrCollege
+          value={values.university}
+          onChange={(value) => onChange('university', value)}
+        />
+        <Degree value={values.degree} onChange={(value) => onChange('degree', value)} />
       </div>
 
       <div className="form-row">
-        <StartDate />
-        <EndDate />
+        <StartDate
+          value={values.startDate}
+          onChange={(value) => onChange('startDate', value)}
+        />
+        <EndDate value={values.endDate} onChange={(value) => onChange('endDate', value)} />
       </div>
     </form>
   );
