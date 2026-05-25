@@ -25,21 +25,8 @@ function isFormValid(values: EducationFormValues): boolean {
   );
 }
 
-interface EducationProps {
-  entries?: EducationEntry[];
-  onEntriesChange?: (entries: EducationEntry[]) => void;
-}
-
-export default function Education({
-  entries: controlledEntries,
-  onEntriesChange,
-}: EducationProps) {
-  const [internalEntries, setInternalEntries] =
-    useState<EducationEntry[]>(SAMPLE_EDUCATION_ENTRIES);
-
-  const entries = controlledEntries ?? internalEntries;
-  const setEntries = onEntriesChange ?? setInternalEntries;
-
+export default function Education() {
+  const [entries, setEntries] = useState<EducationEntry[]>(SAMPLE_EDUCATION_ENTRIES);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formValues, setFormValues] = useState<EducationFormValues>(EMPTY_EDUCATION_FORM);
 
@@ -59,10 +46,10 @@ export default function Education({
 
   const handleRemove = useCallback(
     (id: string) => {
-      setEntries(entries.filter((entry) => entry.id !== id));
+      setEntries((prev) => prev.filter((entry) => entry.id !== id));
       if (editingId === id) resetForm();
     },
-    [editingId, entries, resetForm, setEntries],
+    [editingId, resetForm],
   );
 
   const handleCancel = useCallback(() => {
@@ -80,24 +67,24 @@ export default function Education({
     };
 
     if (editingId) {
-      setEntries(
-        entries.map((entry) =>
+      setEntries((prev) =>
+        prev.map((entry) =>
           entry.id === editingId ? { ...entry, ...payload } : entry,
         ),
       );
     } else {
-      setEntries([
+      setEntries((prev) => [
         {
           id: createEntryId(),
           location: '',
           ...payload,
         },
-        ...entries,
+        ...prev,
       ]);
     }
 
     resetForm();
-  }, [editingId, entries, formValues, resetForm, setEntries]);
+  }, [editingId, formValues, resetForm]);
 
   return (
     <>
