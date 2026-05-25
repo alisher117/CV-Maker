@@ -1,6 +1,11 @@
-"use client"
+'use client';
 
-export default function UniversityOrCollege() {
+interface UniversityOrCollegeProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export default function UniversityOrCollege({ value, onChange }: UniversityOrCollegeProps) {
   return (
     <div>
       <label htmlFor="university_or_college">University or College</label>
@@ -8,12 +13,13 @@ export default function UniversityOrCollege() {
         id="university_or_college"
         type="text"
         name="university_or_college"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         required
         placeholder="---"
-        pattern="^[A-Za-z]"
         title="Start typing we'll suggest matches."
       />
-      <p  className="mt-2 text-xs text-gray-600">Start typing we&apos;ll suggest matches.</p>
+      <p className="mt-2 text-xs text-gray-600">Start typing we&apos;ll suggest matches.</p>
     </div>
   );
 }
