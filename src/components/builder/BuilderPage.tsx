@@ -16,6 +16,7 @@ import NextBtn from '@/components/sections/personal/next_btn';
 import PersonalInfo from '@/components/sections/personal/personal';
 import SkipBtn from '@/components/sections/personal/skip_btn';
 import Tips from '@/components/sections/personal/tips';
+import CertificationPage from '../sections/certification/certification';
 
 export default function BuilderPage() {
   const [activeStep, setActiveStep] = useState<BuilderStepId>('personal');
@@ -40,7 +41,7 @@ export default function BuilderPage() {
 
         <div className="flex min-h-0 min-w-0 flex-1">
           <main className="builder-form-column min-w-0 flex-[3] overflow-auto border border-[#D9D9D9] px-8 py-8">
-            {activeStep === 'personal' ? <PersonalInfo /> : <Education />}
+            {activeStep === 'personal' ? <PersonalInfo /> : <Education /> }
 
             <div className="mt-6 flex gap-4">
               {activeStep === 'personal' ? (
@@ -57,6 +58,7 @@ export default function BuilderPage() {
                 </>
               )}
             </div>
+            <CertificationPage/>
           </main>
 
           <CVPreviewPanel />
