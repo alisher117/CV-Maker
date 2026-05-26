@@ -89,15 +89,19 @@ export default function Education() {
     <>
       <EducationHeader />
 
-      {entries.map((entry) => (
-        <EducationCard
-          key={entry.id}
-          entry={entry}
-          isEditing={editingId === entry.id}
-          onEdit={() => handleEdit(entry)}
-          onRemove={() => handleRemove(entry.id)}
-        />
-      ))}
+      {entries.length === 0 ? (
+        <p className="text-sm text-gray-500">No education entries yet. Add one below.</p>
+      ) : (
+        entries.map((entry) => (
+          <EducationCard
+            key={entry.id}
+            entry={entry}
+            isEditing={editingId === entry.id}
+            onEdit={() => handleEdit(entry)}
+            onRemove={() => handleRemove(entry.id)}
+          />
+        ))
+      )}
 
       <p className="mt-10 mb-5 text-xs font-bold text-gray-600">
         {editingId ? 'EDIT ENTRY' : 'ADD A NEW ENTRY'}
