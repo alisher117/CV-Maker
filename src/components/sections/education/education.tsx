@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from 'react';
 
-import { SAMPLE_EDUCATION_ENTRIES } from '@/data/education-sample';
 import type { EducationEntry, EducationFormValues } from '@/types/education';
 import { EMPTY_EDUCATION_FORM, entryToFormValues } from '@/types/education';
 
@@ -26,7 +25,7 @@ function isFormValid(values: EducationFormValues): boolean {
 }
 
 export default function Education() {
-  const [entries, setEntries] = useState<EducationEntry[]>(SAMPLE_EDUCATION_ENTRIES);
+  const [entries, setEntries] = useState<EducationEntry[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formValues, setFormValues] = useState<EducationFormValues>(EMPTY_EDUCATION_FORM);
 

@@ -1,3 +1,5 @@
+import type { EducationEntry } from '@/types/education';
+
 export interface CVExperience {
   role: string;
   company: string;
@@ -11,6 +13,7 @@ export interface CVData {
   email: string;
   phone: string;
   summary?: string;
+  education: EducationEntry[];
   experience: CVExperience[];
   skills: string[];
 }

@@ -1,9 +1,14 @@
-"use client"
+'use client';
 
-export default function NextBtn(){
-    return (
-        <>
-        <button className="next-btn">Next →</button>
-        </>
-    )
+interface NextBtnProps {
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+export default function NextBtn({ onClick, disabled }: NextBtnProps) {
+  return (
+    <button type="button" className="next-btn" onClick={onClick} disabled={disabled}>
+      Next →
+    </button>
+  );
 }

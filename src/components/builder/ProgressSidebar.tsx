@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import ProgressBar from '@/components/ui/ProgressBar';
 
 import StepIndicator from './StepIndicator';
-import { WIZARD_STEPS } from './steps';
+import { EDUCATION_STEPS } from './steps';
 
 export interface WizardStep {
   id: string;
@@ -15,10 +15,11 @@ export interface WizardStep {
   current?: boolean;
 }
 
-export const DEFAULT_WIZARD_STEPS = WIZARD_STEPS;
+export const DEFAULT_WIZARD_STEPS = EDUCATION_STEPS;
 
 export interface ProgressSidebarProps {
   steps?: WizardStep[];
+  onStepSelect?: (stepId: string) => void;
 }
 
 const listVariants = {
@@ -38,7 +39,10 @@ const itemVariants = {
   },
 };
 
-export default function ProgressSidebar({ steps = WIZARD_STEPS }: ProgressSidebarProps) {
+export default function ProgressSidebar({
+  steps = EDUCATION_STEPS,
+  onStepSelect,
+}: ProgressSidebarProps) {
   const total = steps.length;
   const completedCount = steps.filter((s) => s.completed).length;
   const currentIndex = steps.findIndex((s) => s.current);
@@ -82,10 +86,12 @@ export default function ProgressSidebar({ steps = WIZARD_STEPS }: ProgressSideba
             key={step.id}
             variants={itemVariants}
             index={i + 1}
+            stepId={step.id}
             label={step.label}
             completed={step.completed}
             current={step.current}
             optional={step.optional}
+            onSelect={onStepSelect}
           />
         ))}
       </motion.ol>

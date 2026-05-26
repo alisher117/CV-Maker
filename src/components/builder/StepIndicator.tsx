@@ -3,14 +3,17 @@
 import { AnimatePresence, motion, type Variants } from 'framer-motion';
 
 import CheckIcon from '@/components/ui/CheckIcon';
+import { NAVIGABLE_STEPS } from './steps';
 
 export interface StepIndicatorProps {
   index: number;
+  stepId: string;
   label: string;
   completed?: boolean;
   current?: boolean;
   optional?: boolean;
   variants?: Variants;
+  onSelect?: (stepId: string) => void;
 }
 
 const badgeTransition = { duration: 0.35, ease: [0.4, 0, 0.2, 1] as const };
@@ -18,25 +21,20 @@ const labelTransition = { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const };
 
 export default function StepIndicator({
   index,
+  stepId,
   label,
   completed = false,
   current = false,
   optional = false,
   variants,
+  onSelect,
 }: StepIndicatorProps) {
   const isActive = current;
   const isDone = completed && !current;
+  const isNavigable = NAVIGABLE_STEPS.includes(stepId as (typeof NAVIGABLE_STEPS)[number]);
 
-  return (
-    <motion.li
-      layout
-      variants={variants}
-      aria-current={current ? 'step' : undefined}
-      className="flex min-h-10 items-center gap-3.5"
-      initial={variants ? 'hidden' : false}
-      animate={variants ? 'show' : { opacity: 1 }}
-      transition={{ layout: { duration: 0.25, ease: [0.4, 0, 0.2, 1] } }}
-    >
+  const content = (
+    <>
       <motion.span
         layout
         aria-hidden="true"
@@ -103,6 +101,41 @@ export default function StepIndicator({
           ) : null}
         </AnimatePresence>
       </div>
+    </>
+  );
+
+  if (onSelect && isNavigable) {
+    return (
+      <motion.li
+        layout
+        variants={variants}
+        aria-current={current ? 'step' : undefined}
+        initial={variants ? 'hidden' : false}
+        animate={variants ? 'show' : { opacity: 1 }}
+        transition={{ layout: { duration: 0.25, ease: [0.4, 0, 0.2, 1] } }}
+      >
+        <button
+          type="button"
+          onClick={() => onSelect(stepId)}
+          className="flex min-h-10 w-full cursor-pointer items-center gap-3.5 rounded-md text-left hover:bg-gray-50"
+        >
+          {content}
+        </button>
+      </motion.li>
+    );
+  }
+
+  return (
+    <motion.li
+      layout
+      variants={variants}
+      aria-current={current ? 'step' : undefined}
+      className="flex min-h-10 items-center gap-3.5"
+      initial={variants ? 'hidden' : false}
+      animate={variants ? 'show' : { opacity: 1 }}
+      transition={{ layout: { duration: 0.25, ease: [0.4, 0, 0.2, 1] } }}
+    >
+      {content}
     </motion.li>
   );
 }
