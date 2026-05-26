@@ -4,9 +4,10 @@ import { forwardRef } from 'react';
 
 import { SAMPLE_CV_DATA } from '@/data/cv-sample';
 import type { CVData } from '@/types/cv';
+import { formatEducationPeriod } from '@/types/education';
 
 export interface CVDocumentProps {
-  /** Omit to use static sample data until form state is wired up. */
+  /** Omit to use static SAMPLE_CV_DATA from cv-sample.ts */
   data?: CVData;
 }
 
@@ -37,6 +38,27 @@ export const CVDocument = forwardRef<HTMLDivElement, CVDocumentProps>(function C
         <section className="mt-5">
           <h2 className="mb-1 text-sm font-bold tracking-wide uppercase">Summary</h2>
           <p className="text-sm leading-relaxed">{data.summary}</p>
+        </section>
+      )}
+
+      {data.education.length > 0 && (
+        <section className="mt-5">
+          <h2 className="mb-2 text-sm font-bold tracking-wide uppercase">Education</h2>
+          {data.education.map((edu) => (
+            <div key={edu.id} className="mb-3">
+              <div className="flex justify-between gap-4">
+                <span className="font-semibold">
+                  {edu.degree} — {edu.university}
+                </span>
+                <span className="shrink-0 text-sm text-gray-500">
+                  {formatEducationPeriod(edu.startDate, edu.endDate)}
+                </span>
+              </div>
+              {edu.location ? (
+                <p className="text-sm text-gray-600">{edu.location}</p>
+              ) : null}
+            </div>
+          ))}
         </section>
       )}
 

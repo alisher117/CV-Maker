@@ -1,6 +1,7 @@
 import type { CVData } from '@/types/cv';
+import { SAMPLE_EDUCATION_ENTRIES } from '@/data/education-sample';
 
-/** Static placeholder until the form store feeds the preview. */
+/** Static CV preview data until Zod + store wiring on a later step. */
 export const SAMPLE_CV_DATA: CVData = {
   fullName: 'Alisher Maxutov',
   title: 'Senior Full Stack Developer',
@@ -8,6 +9,7 @@ export const SAMPLE_CV_DATA: CVData = {
   phone: '+1 555 0100',
   summary:
     'Experienced engineer with 8+ years building scalable web applications and leading cross-functional teams.',
+  education: SAMPLE_EDUCATION_ENTRIES,
   experience: [
     {
       role: 'Senior Engineer',

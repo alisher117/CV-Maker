@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from 'react';
 
-import { SAMPLE_EDUCATION_ENTRIES } from '@/data/education-sample';
 import type { EducationEntry, EducationFormValues } from '@/types/education';
 import { EMPTY_EDUCATION_FORM, entryToFormValues } from '@/types/education';
 
@@ -26,7 +25,7 @@ function isFormValid(values: EducationFormValues): boolean {
 }
 
 export default function Education() {
-  const [entries, setEntries] = useState<EducationEntry[]>(SAMPLE_EDUCATION_ENTRIES);
+  const [entries, setEntries] = useState<EducationEntry[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formValues, setFormValues] = useState<EducationFormValues>(EMPTY_EDUCATION_FORM);
 
@@ -90,19 +89,15 @@ export default function Education() {
     <>
       <EducationHeader />
 
-      {entries.length === 0 ? (
-        <p className="text-sm text-gray-500">No education entries yet. Add one below.</p>
-      ) : (
-        entries.map((entry) => (
-          <EducationCard
-            key={entry.id}
-            entry={entry}
-            isEditing={editingId === entry.id}
-            onEdit={() => handleEdit(entry)}
-            onRemove={() => handleRemove(entry.id)}
-          />
-        ))
-      )}
+      {entries.map((entry) => (
+        <EducationCard
+          key={entry.id}
+          entry={entry}
+          isEditing={editingId === entry.id}
+          onEdit={() => handleEdit(entry)}
+          onRemove={() => handleRemove(entry.id)}
+        />
+      ))}
 
       <p className="mt-10 mb-5 text-xs font-bold text-gray-600">
         {editingId ? 'EDIT ENTRY' : 'ADD A NEW ENTRY'}
