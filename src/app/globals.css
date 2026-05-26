@@ -86,17 +86,17 @@ body {
   font-weight: bold;
 }
 
-.personal-info, .review-download, .education-info{
+.personal-info, .review-download, .education-info, .certifi-info{
   margin: 0 0 1.5rem;
 }
 
-.personal-info h2, .review-download h2, .education-info h2{
+.personal-info h2, .review-download h2, .education-info h2, .certifi-info h2{
   font-size: 32px;
   font-weight: bold;
   letter-spacing: 0.01em;
 }
 
-.personal-info p, .review-download p, .education-info p{
+.personal-info p, .review-download p, .education-info p, .certifi-info p{
   font-size: 15px;
   letter-spacing: -0.03em;
   margin-top: 0.5rem;
@@ -152,7 +152,7 @@ body {
   display: flex; 
 }
 
-.education-form {
+.education-form, .certifi-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -165,14 +165,14 @@ body {
   gap: 16px;
 }
 
-.education-form label {
+.education-form label, .certifi-form label {
   font-size: 12px;
   font-weight: bold;
   margin: 0 0 5px;
   display: block;
 }
 
-.education-form input {
+.education-form input, .certifi-form input {
   width: 100%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
@@ -181,7 +181,14 @@ body {
   outline: none;
 }
 
-.education-form input:focus {
+.education-form input:focus, .certifi-form input:focus {
   border-color: #0070f3;
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.1);
+}
+
+.certifi-cards{
+  border: 1px solid #D9D9D9;
+  margin: 10px 5px;
+  display: flex;
+  flex-direction: column;
 }
