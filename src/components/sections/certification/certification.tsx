@@ -6,24 +6,22 @@ export default function CertificationPage(){
 		<section className="certifi-info">
 			<div>
 				<h2>Certifications</h2>
+				<p className="text-[#757475] text-xs p-1 rounded-sm bg-[#F7F5F4] font-bold w-25 text-center">OPTIONAL</p>
 				<p>Courses, licenses, professional credentials, language tests. List the most recent first — skip if none.</p>
-			</div>
-			<div>
-				<p className="text-gray-700 font-xs m-l-5 p-1 rounded-sm bg-gray-400 font-semibold">OPTIONAL</p>
 			</div>
 		</section>
 		<section className="certifi-cards">
 			<div>
-				<p className="bg-[FBEBEE] text-var(--brand) p-5 rounded-xl m-3">★</p>
+				<p className="bg-[#FBEBEE] text-[#A4102A] rounded-xl w-15 h-15 text-center">★</p>
 			</div>
 			<div>
-				<p className="font-bold font-base">Cisco Certified Network Associate (CCNA)</p>
-				<p className="bg-[40F2A5] text-[1F8A5C] font-semibold rounded-xl">✓ VERIFIED</p>
-				<p className="font-sm">Cisco Networking Academy</p>
-				<p className="font-sm text-gray-700">Issued Mar 2025 • No expiry • Credential ID CSCO-13059417</p>
+				<p className="font-bold text-base mb-1">Cisco Certified Network Associate (CCNA)</p>
+				<p className="bg-[#E9F6ED] text-[#388A6A] font-semibold rounded-xl text-xs w-20">✓ VERIFIED</p>
+				<p className="text-sm mb-1">Cisco Networking Academy</p>
+				<p className="text-sm text-gray-700">Issued Mar 2025 • No expiry • Credential ID CSCO-13059417</p>
 			</div>
 			<div>
-				<button type="button" className="border-gray-600 rounded-lg p-3 w-60">Edit</button>
+				<button type="button" className="border-[#D9D9D9] rounded-lg p-2 w-30 text-center">Edit</button>
 			</div>
 		</section>
 		{/* inputs */}

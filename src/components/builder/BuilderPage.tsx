@@ -16,6 +16,8 @@ import NextBtn from '@/components/sections/personal/next_btn';
 import PersonalInfo from '@/components/sections/personal/personal';
 import SkipBtn from '@/components/sections/personal/skip_btn';
 import Tips from '@/components/sections/personal/tips';
+import CertificationPage from '../sections/certification/certification';
+import SkillsPage from '../sections/skills_languages/skillsPage';
 
 export default function BuilderPage() {
   const [activeStep, setActiveStep] = useState<BuilderStepId>('personal');
@@ -57,6 +59,8 @@ export default function BuilderPage() {
                 </>
               )}
             </div>
+            <CertificationPage/>
+            <SkillsPage/>
           </main>
 
           <CVPreviewPanel />
