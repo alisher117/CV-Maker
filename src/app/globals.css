@@ -86,17 +86,17 @@ body {
   font-weight: bold;
 }
 
-.personal-info, .review-download, .education-info, .certifi-info{
+.personal-info, .review-download, .education-info, .certifi-info, .skills-info{
   margin: 0 0 1.5rem;
 }
 
-.personal-info h2, .review-download h2, .education-info h2, .certifi-info h2{
+.personal-info h2, .review-download h2, .education-info h2, .certifi-info h2, .skills-info h2{
   font-size: 32px;
   font-weight: bold;
   letter-spacing: 0.01em;
 }
 
-.personal-info p, .review-download p, .education-info p, .certifi-info p{
+.personal-info p, .review-download p, .education-info p, .certifi-info p, .skills-info p{
   font-size: 15px;
   letter-spacing: -0.03em;
   margin-top: 0.5rem;
@@ -187,8 +187,65 @@ body {
 }
 
 .certifi-cards{
-  border: 1px solid #D9D9D9;
-  margin: 10px 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  margin: 10px 5px;
+}
+
+.languages{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin: 2% 0;
+  padding: 2%;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+}
+
+.add-lang{
+  border: 1px dashed #A4102A;
+  background-color: #d9d9d9;
+  border-radius: 12px;
+  text-align: center;
+  padding: 5px 8px;
+  margin: 2% 0;
+  color: var(--brand);
+  width: 100%;
+  height: 45px;
+}
+
+.search-input{
+  width: 100%;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  padding: 4px 10px;
+  margin: 2% 0;
+  height: 45px;
+}
+
+.skill-btn{
+  border: none;
+  border-radius: 30px;
+  background-color: #d9d9d9;
+  color: var(--brand);
+  margin-left: 8px;
+  padding: 2px 14px;
+  height: 30px;
+  text-align: center;
+}
+
+.suggested-skill-btn{
+  border: 1px solid #D9D9D9;
+  border-radius: 30px;
+  color: var(--text-primary);
+  margin-left: 8px;
+  padding: 2px 14px;
+  height: 30px;
+  text-align: center;
 }
