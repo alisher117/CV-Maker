@@ -9,9 +9,9 @@ const BASE_STEPS: Omit<WizardStep, 'completed' | 'current'>[] = [
   { id: 'review', label: 'Review & download' },
 ];
 
-export type BuilderStepId = 'personal' | 'education';
+export type BuilderStepId = 'personal' | 'education' | 'certifications';
 
-export const NAVIGABLE_STEPS: BuilderStepId[] = ['personal', 'education'];
+export const NAVIGABLE_STEPS: BuilderStepId[] = ['personal', 'education', 'certifications'];
 
 export function getStepsForActiveStep(activeId: string): WizardStep[] {
   const activeIndex = BASE_STEPS.findIndex((s) => s.id === activeId);
@@ -25,3 +25,4 @@ export function getStepsForActiveStep(activeId: string): WizardStep[] {
 
 export const PERSONAL_STEPS = getStepsForActiveStep('personal');
 export const EDUCATION_STEPS = getStepsForActiveStep('education');
+export const CERTIFICATIONS_STEPS = getStepsForActiveStep('certifications');

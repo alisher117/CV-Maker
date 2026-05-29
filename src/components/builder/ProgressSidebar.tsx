@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import ProgressBar from '@/components/ui/ProgressBar';
 
 import StepIndicator from './StepIndicator';
-import { EDUCATION_STEPS } from './steps';
+import { PERSONAL_STEPS } from './steps';
 
 export interface WizardStep {
   id: string;
@@ -15,7 +15,7 @@ export interface WizardStep {
   current?: boolean;
 }
 
-export const DEFAULT_WIZARD_STEPS = EDUCATION_STEPS;
+export const DEFAULT_WIZARD_STEPS = PERSONAL_STEPS;
 
 export interface ProgressSidebarProps {
   steps?: WizardStep[];
@@ -40,7 +40,7 @@ const itemVariants = {
 };
 
 export default function ProgressSidebar({
-  steps = EDUCATION_STEPS,
+  steps = PERSONAL_STEPS,
   onStepSelect,
 }: ProgressSidebarProps) {
   const total = steps.length;

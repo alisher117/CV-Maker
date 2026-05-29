@@ -10,14 +10,24 @@ import {
   NAVIGABLE_STEPS,
 } from '@/components/builder/steps';
 import CVPreviewPanel from '@/components/preview/CVPreviewPanel';
+import Certification from '@/components/sections/certification/certification';
 import Education from '@/components/sections/education/education';
 import BackBtn from '@/components/sections/personal/back_btn';
 import NextBtn from '@/components/sections/personal/next_btn';
 import PersonalInfo from '@/components/sections/personal/personal';
 import SkipBtn from '@/components/sections/personal/skip_btn';
 import Tips from '@/components/sections/personal/tips';
-import CertificationPage from '../sections/certification/certification';
-import SkillsPage from '../sections/skills_languages/skillsPage';
+
+function StepContent({ step }: { step: BuilderStepId }) {
+  switch (step) {
+    case 'personal':
+      return <PersonalInfo />;
+    case 'education':
+      return <Education />;
+    case 'certifications':
+      return <Certification />;
+  }
+}
 
 export default function BuilderPage() {
   const [activeStep, setActiveStep] = useState<BuilderStepId>('personal');
@@ -42,25 +52,31 @@ export default function BuilderPage() {
 
         <div className="flex min-h-0 min-w-0 flex-1">
           <main className="builder-form-column min-w-0 flex-[3] overflow-auto border border-[#D9D9D9] px-8 py-8">
-            {activeStep === 'personal' ? <PersonalInfo /> : <Education />}
+            <StepContent step={activeStep} />
 
             <div className="mt-6 flex gap-4">
-              {activeStep === 'personal' ? (
+              {activeStep === 'personal' && (
                 <>
                   <BackBtn disabled />
                   <SkipBtn onClick={() => setActiveStep('education')} />
                   <NextBtn onClick={() => setActiveStep('education')} />
                 </>
-              ) : (
+              )}
+              {activeStep === 'education' && (
                 <>
                   <BackBtn onClick={() => setActiveStep('personal')} />
-                  <SkipBtn onClick={() => setActiveStep('education')} />
+                  <SkipBtn onClick={() => setActiveStep('certifications')} />
+                  <NextBtn onClick={() => setActiveStep('certifications')} />
+                </>
+              )}
+              {activeStep === 'certifications' && (
+                <>
+                  <BackBtn onClick={() => setActiveStep('education')} />
+                  <SkipBtn disabled />
                   <NextBtn disabled />
                 </>
               )}
             </div>
-            <CertificationPage/>
-            <SkillsPage/>
           </main>
 
           <CVPreviewPanel />

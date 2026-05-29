@@ -152,11 +152,142 @@ body {
   display: flex; 
 }
 
-.education-form, .certifi-form {
+.education-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
   max-width: 600px;
+}
+
+.certifi-form {
+  margin-top: 0.5rem;
+  max-width: 42rem;
+}
+
+.certifi-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1.5rem;
+}
+
+.certifi-field label,
+.certifi-field .certifi-field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.certifi-input-wrap {
+  position: relative;
+}
+
+.certifi-input-wrap input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 0 2.5rem 0 1rem;
+  font-size: 14px;
+  outline: none;
+  color: var(--text-primary);
+}
+
+.certifi-input-wrap input::placeholder {
+  color: #9ca3af;
+}
+
+.certifi-input-wrap input.certifi-input-valid {
+  border-color: #388a6a;
+}
+
+.certifi-input-wrap input:focus {
+  border-color: #388a6a;
+  box-shadow: 0 0 0 2px rgba(56, 138, 106, 0.15);
+}
+
+.certifi-check {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  transform: translateY(-50%);
+  color: #171717;
+}
+
+.certifi-file-upload {
+  display: flex;
+  height: 48px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 1px dashed #d9d9d9;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.certifi-file-upload-valid {
+  border-color: #388a6a;
+}
+
+.certifi-file-upload-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--brand);
+}
+
+.certifi-file-upload-hint {
+  font-size: 12px;
+  line-height: 1.2;
+  color: #6b7280;
+}
+
+.certifi-file-upload-name {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.certifi-add-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 42rem;
+  height: 48px;
+  border: 1px dashed var(--brand);
+  border-radius: 12px;
+  background-color: #fbebee;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand);
+  cursor: pointer;
+}
+
+.certifi-add-btn:hover {
+  background-color: #f5e0e4;
+}
+
+.certifi-star {
+  display: flex;
+  height: 3.75rem;
+  width: 3.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: #fbebee;
+  font-size: 1.25rem;
+  color: var(--brand);
 }
 
 .form-row {
@@ -165,14 +296,14 @@ body {
   gap: 16px;
 }
 
-.education-form label, .certifi-form label {
+.education-form label {
   font-size: 12px;
   font-weight: bold;
   margin: 0 0 5px;
   display: block;
 }
 
-.education-form input, .certifi-form input {
+.education-form input {
   width: 100%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
@@ -181,7 +312,7 @@ body {
   outline: none;
 }
 
-.education-form input:focus, .certifi-form input:focus {
+.education-form input:focus {
   border-color: #0070f3;
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.1);
 }
