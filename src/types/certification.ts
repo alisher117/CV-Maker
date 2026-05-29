@@ -1,41 +1,48 @@
 export interface CertificationEntry {
   id: string;
   name: string;
-  provider: string;
-  activeTill: string;
-  fileName: string;
+  issuingOrganization: string;
+  issueDate: string;
+  expiryDate: string;
+  credentialId: string;
+  credentialUrl: string;
+  verified?: boolean;
 }
 
 export interface CertificationFormValues {
   name: string;
-  provider: string;
-  activeTill: string;
-  fileName: string;
+  issuingOrganization: string;
+  issueDate: string;
+  expiryDate: string;
+  credentialId: string;
+  credentialUrl: string;
 }
 
 export const EMPTY_CERTIFICATION_FORM: CertificationFormValues = {
   name: '',
-  provider: '',
-  activeTill: '',
-  fileName: '',
+  issuingOrganization: '',
+  issueDate: '',
+  expiryDate: '',
+  credentialId: '',
+  credentialUrl: '',
 };
 
 export function entryToFormValues(entry: CertificationEntry): CertificationFormValues {
   return {
     name: entry.name,
-    provider: entry.provider,
-    activeTill: entry.activeTill,
-    fileName: entry.fileName,
+    issuingOrganization: entry.issuingOrganization,
+    issueDate: entry.issueDate,
+    expiryDate: entry.expiryDate,
+    credentialId: entry.credentialId,
+    credentialUrl: entry.credentialUrl,
   };
 }
 
 export function formatCertificationDetails(entry: CertificationEntry): string {
-  const parts = [entry.provider];
-  if (entry.activeTill.trim()) {
-    parts.push(`Active till ${entry.activeTill}`);
-  }
-  if (entry.fileName.trim()) {
-    parts.push(entry.fileName);
+  const parts: string[] = [`Issued ${entry.issueDate}`];
+  parts.push(entry.expiryDate.trim() ? entry.expiryDate : 'No expiry');
+  if (entry.credentialId.trim()) {
+    parts.push(`Credential ID ${entry.credentialId}`);
   }
   return parts.join(' • ');
 }
